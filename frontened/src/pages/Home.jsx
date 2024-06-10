@@ -1,6 +1,5 @@
 // import { Analytics } from "../components/Analytics";
-import home_img from "../assets/home.png"
-import design_img from "../assets/design.png"
+import home_img from "../assets/home.png";
 
  const Home = () => {
   return (

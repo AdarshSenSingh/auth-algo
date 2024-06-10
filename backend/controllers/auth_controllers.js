@@ -38,7 +38,7 @@ const register =async(req,res)=>{
      const hashed_pass= await bcrypt.hash(password,salt);
     // register the new user
    const userCreate= await User.create({user_name,email,mobile_no,password:hashed_pass});
-    res.status(400).json({
+    res.status(200).json({
       msg: "Registration sucessfully",
       msg: req.body,
       token: await userCreate.generateToken(),
@@ -53,32 +53,35 @@ const register =async(req,res)=>{
 
 // login part
 
-const login= async(req,res)=>{
-    // take the data from body
-    const {email,password}= req.body;
-    // check for the exits of user
-    try {
-      const userExits= await User.findOne({email});
-    if(userExits){
-      const user= await bcrypt.compare(password,userExits.password );
-      if(user){
-        res
-        .status(200).json({msg:"Login Sucessfully",
-        token: await userExits.generateToken(),
-         userID: userExits._id.toString()
-    });
+const login = async (req, res) => {
+  // Take the data from body
+  const { email, password } = req.body;
+
+  // Check for the existence of user
+  try {
+    const userExists = await User.findOne({ email });
+
+    if (userExists) {
+      const isPasswordValid = await bcrypt.compare(password, userExists.password);
+
+      if (isPasswordValid) {
+        const token = await userExists.generateToken();
+
+        res.status(200).json({
+          msg: "Login Successfully",
+          token,
+          userID: userExists._id.toString()
+        });
+      } else {
+        res.status(401).json({ msg: "Invalid password" });
       }
-      else{
-        res.status(401).json({msg:"Invalid password"});
-      }
+    } else {
+      res.status(401).json({ msg: "Invalid credentials" });
     }
-    else {
-      res.status(401).json({msg:"Invalid credentials"});
-    }
-    } catch (error) {
-      console.error("Error during login:", error);
-      res.status(500).json({ msg: "Error while logging in" });
-    }
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ msg: "Error while logging in" });
+  }
 };
 
 

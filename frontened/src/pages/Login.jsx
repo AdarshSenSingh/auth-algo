@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './Login.css';
 import img from "../assets/register.png"
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -8,10 +9,10 @@ const Login = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleInput = (e) => {
-    console.log(e);
-    let name = e.target.name;
-    let value = e.target.value;
+    const { name, value } = e.target;
 
     setUser({
       ...user,
@@ -20,9 +21,37 @@ const Login = () => {
   };
 
   // handle form on submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // Assuming the response contains a token or a success message
+        console.log(data.msg); // You can display this message to the user if needed
+
+        setUser({
+          email: "",
+          password: "",
+        });
+
+        // Redirect to another page
+        navigate("/compiler");
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData.msg); // Display or log error message from server
+      }
+    } catch (error) {
+      console.error("Error while login:", error);
+    }
   };
 
 
@@ -42,7 +71,7 @@ const Login = () => {
               </div>
               {/* our main registration code  */}
               <div className="registration-form">
-                <h1 className="main-heading mb-3">registration form</h1>
+                <h1 className="main-heading mb-3">Login form</h1>
                 <br />
                 <form onSubmit={handleSubmit}>
                  

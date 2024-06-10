@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Signup.css';
 import img from "../assets/register.png"
 
-const navigate= Navigate();
+
 const Signup = () => {
   const [user, setUser] = useState({
     user_name: "",
@@ -11,6 +11,7 @@ const Signup = () => {
     mobile_no: "",
     password: "",
   });
+  const navigate= useNavigate();
 
   const handleInput = (e) => {
     console.log(e);
