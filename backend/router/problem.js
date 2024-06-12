@@ -8,7 +8,7 @@ const {
   deleteProblem,
 } = require('../controllers/problemController');
 const authMiddleware = require('../middlewares/authMiddleware');
-
+  // here route is /problem/....
 router.use(authMiddleware);
 router.post('/', createProblem);
 router.get('/', getProblems);

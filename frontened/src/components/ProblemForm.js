@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const ProblemForm = ({ onSubmit, initialData }) => {
+const ProblemForm = ({onSubmit,initialData}) => {
   const [problem, setProblem] = useState(initialData || {
     title: '',
     description: '',

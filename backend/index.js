@@ -19,7 +19,7 @@ app.use(express.json());
 app.use("/auth",router);
 app.use("/problems", problemRoutes);
 
-const PORT= 5000;
+const PORT = process.env.PORT || 5000;
 dbConnection().then(()=>{
     app.listen(PORT, ()=>{
         console.log(`server is listening on ${PORT}`);

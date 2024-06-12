@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
 
 
 });
+// generating tokens
 
 userSchema.methods.generateToken= async function(){
     try {
