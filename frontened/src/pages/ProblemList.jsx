@@ -1,7 +1,7 @@
 import  { useEffect, useState } from 'react';
-import { getProblems, deleteProblem } from '../services/problemService';
+import { getProblems, deleteProblem } from '../../service/problemService';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+
 
 const ProblemList = () => {
   const [problems, setProblems] = useState([]);
@@ -31,7 +31,7 @@ const ProblemList = () => {
 
   return (
     <div>
-      <Navbar />
+     
       <h1>Problem List</h1>
       <button onClick={() => navigate('/create')}>Create Problem</button>
       <ul>

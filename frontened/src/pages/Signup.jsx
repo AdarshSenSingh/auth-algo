@@ -36,6 +36,7 @@ const Signup = () => {
         body: JSON.stringify(user),
       });
       if(response.ok){
+        alert("User Sucessfully Registered");
         setUser({ user_name: "",
           email: "",
           mobile_no: "",

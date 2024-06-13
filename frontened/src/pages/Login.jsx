@@ -33,6 +33,7 @@ const Login = () => {
       });
 
       if (response.ok) {
+        alert("You are sucessfully login!")
         const data = await response.json();
 
         // Assuming the response contains a token or a success message

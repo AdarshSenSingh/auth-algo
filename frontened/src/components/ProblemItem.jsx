@@ -1,6 +1,7 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 import { useNavigate } from 'react-router-dom';
 
+// eslint-disable-next-line react/prop-types
 const ProblemItem = ({ problem, onDelete }) => {
   const navigate = useNavigate();
 

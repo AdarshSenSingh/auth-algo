@@ -23,7 +23,9 @@ const Navbar = () => {
                     <li><NavLink to="/register">Signup</NavLink></li>
                     <li><NavLink to="/login">Login</NavLink></li>
                     <li><NavLink to="/compiler">Compiler</NavLink></li>
+                    <li><NavLink to="/problems">Problems</NavLink></li>
                     <li><NavLink to="/create">Create Problem</NavLink></li>
+                    <li><NavLink to="/edit/:id">Edit</NavLink></li>
                 </ul>
                 <button onClick={handleLogout}>Logout</button>
             </nav>

@@ -24,9 +24,9 @@ function App() {
       <Route path='/login'element={<Login />}/>
       <Route path='/about' element={<About />}/>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path="/problems" element={<ProblemList />} />
       <Route path="/create" element={<CreateEditProblem />} />
       <Route path="/edit/:id" element={<CreateEditProblem />} />
-      <Route path="/problems" element={<ProblemList />} />
       <Route path='/compiler'element={<Compiler />}/>
     </Routes>
     </BrowserRouter>

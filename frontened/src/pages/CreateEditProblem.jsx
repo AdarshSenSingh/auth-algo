@@ -1,8 +1,8 @@
 import ProblemForm from '../components/ProblemForm';
-import { createProblem, getProblem, updateProblem } from '../services/problemService';
+import { createProblem, getProblem, updateProblem } from '../../service/problemService';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
+
 
 const CreateEditProblem = () => {
   const { id } = useParams();
@@ -39,7 +39,6 @@ const CreateEditProblem = () => {
 
   return (
     <div>
-      <Navbar />
       <h1>{id ? 'Edit Problem' : 'Create Problem'}</h1>
       <ProblemForm onSubmit={handleSubmit} initialData={initialData} />
     </div>
