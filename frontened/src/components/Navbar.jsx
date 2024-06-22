@@ -4,10 +4,10 @@ import "./Navbar.css"
 const Navbar = () => {
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-      localStorage.removeItem('token');
-      navigate('/login');
-    };
+    // const handleLogout = () => {
+    //   localStorage.removeItem('token');
+    //   navigate('/login');
+    // };
   return (
     <>
     <header>
@@ -18,16 +18,17 @@ const Navbar = () => {
             <nav>
                 <ul>
                     <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/contact">Contact</NavLink></li>
+                    {/* <li><NavLink to="/contact">Contact</NavLink></li> */}
                     <li><NavLink to="/about">About</NavLink></li>
                     <li><NavLink to="/register">Signup</NavLink></li>
                     <li><NavLink to="/login">Login</NavLink></li>
+                    <li><NavLink to="/logout">Logout</NavLink></li>
                     <li><NavLink to="/compiler">Compiler</NavLink></li>
-                    <li><NavLink to="/problems">Problems</NavLink></li>
+                    {/* <li><NavLink to="/problems">Problems</NavLink></li>
                     <li><NavLink to="/create">Create Problem</NavLink></li>
-                    <li><NavLink to="/edit/:id">Edit</NavLink></li>
+                    <li><NavLink to="/edit/:id">Edit</NavLink></li>  */}
                 </ul>
-                <button onClick={handleLogout}>Logout</button>
+                {/* <button onClick={handleLogout}>Logout</button> */}
             </nav>
         </div>
     </header>

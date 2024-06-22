@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
+    "postcss": "^8.4.38",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "react-simple-code-editor": "^0.13.1",
+    "tailwind": "^4.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

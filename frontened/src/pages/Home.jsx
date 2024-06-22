@@ -16,11 +16,16 @@ import home_img from "../assets/home.png";
               <div className="btn btn-group">
                 <a href="/contact">
                   <button className="btn">Contact Me</button>
-                </a>
+                </a> 
+                
                 <a href="/services">
                   <button className="btn secondary-btn">learn more</button>
                 </a>
+                
               </div>
+         
+             
+              
             </div>
 
             {/* hero images  */}

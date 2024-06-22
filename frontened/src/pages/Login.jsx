@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './Login.css';
 import img from "../assets/register.png"
-import { useNavigate } from "react-router-dom";
+import { useNavigate,NavLink } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -45,7 +45,7 @@ const Login = () => {
         });
 
         // Redirect to another page
-        navigate("/compiler");
+        navigate("/create");
       } else {
         const errorData = await response.json();
         console.error("Error:", errorData.msg); // Display or log error message from server
@@ -102,6 +102,10 @@ const Login = () => {
                     Login Now!
                   </button>
                 </form>
+                <div className="tosignup">
+                  <p>Don't have an account</p>
+                  <NavLink to="/register">register here</NavLink>
+                </div>
               </div>
             </div>
           </div>

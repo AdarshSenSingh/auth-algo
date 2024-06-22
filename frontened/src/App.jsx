@@ -9,6 +9,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import CreateEditProblem from "./pages/CreateEditProblem";
 import ProblemList from "./pages/ProblemList";
+import Logout from "./pages/Logout";
 
 function App() {
  
@@ -28,6 +29,7 @@ function App() {
       <Route path="/create" element={<CreateEditProblem />} />
       <Route path="/edit/:id" element={<CreateEditProblem />} />
       <Route path='/compiler'element={<Compiler />}/>
+      <Route path="/logout" element={<Logout />}></Route>
     </Routes>
     </BrowserRouter>
     </>

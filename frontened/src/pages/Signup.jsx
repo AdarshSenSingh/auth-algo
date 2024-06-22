@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,NavLink } from "react-router-dom";
 import './Signup.css';
 import img from "../assets/register.png"
 
@@ -116,6 +116,11 @@ const Signup = () => {
                     Register Now
                   </button>
                 </form>
+                <div className="tologin">
+                   <p>Already Registered!</p>
+                   <NavLink to="/login">login here</NavLink>
+
+                </div>
               </div>
             </div>
           </div>
