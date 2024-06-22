@@ -1,5 +1,6 @@
 // import { Analytics } from "../components/Analytics";
 import home_img from "../assets/home.png";
+import "./Home.css"
 
  const Home = () => {
   return (
@@ -13,13 +14,13 @@ import home_img from "../assets/home.png";
               <p>
                 Are u ready for brush up your coding-skills as well as push your practises on peak.
               </p>
-              <div className="btn btn-group">
+              <div className=" btn-group">
                 <a href="/contact">
-                  <button className="btn">Contact Me</button>
+                  <button className="btn2 secondary-btn">Contact Me</button>
                 </a> 
-                
+              <br /> 
                 <a href="/services">
-                  <button className="btn secondary-btn">learn more</button>
+                  <button className="btn1 secondary-btn">learn more</button>
                 </a>
                 
               </div>
