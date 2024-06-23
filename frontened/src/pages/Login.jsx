@@ -2,6 +2,7 @@ import { useState } from "react";
 import './Login.css';
 import img from "../assets/register.png"
 import { useNavigate,NavLink } from "react-router-dom";
+import {useAuth} from "../token/auth.jsx"
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -10,6 +11,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const storeTokeninLS= useAuth();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -35,6 +37,7 @@ const Login = () => {
       if (response.ok) {
         alert("You are sucessfully login!")
         const data = await response.json();
+        storeTokeninLS(data.token);
 
         // Assuming the response contains a token or a success message
         console.log(data.msg); // You can display this message to the user if needed
@@ -103,7 +106,7 @@ const Login = () => {
                   </button>
                 </form>
                 <div className="tosignup">
-                  <p>Don't have an account</p>
+                  <p>Do not have an account</p>
                   <NavLink to="/register">register here</NavLink>
                 </div>
               </div>

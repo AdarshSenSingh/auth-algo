@@ -1,24 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './Compiler.css';
 
 function Compiler() {
     const [code, setCode] = useState(
-        `#include <iostream> 
-        using namespace std;
-        // Define the main function
-        int main() { 
-            // Declare variables
-            int num1, num2, sum;
-            // Prompt user for input
-            cin >> num1 >> num2;  
-            // Calculate the sum
-            sum = num1 + num2;  
-            // Output the result
-            cout << "The sum of the two numbers is: " << sum;  
-            // Return 0 to indicate successful execution
-            return 0;  
-        }`
+        `#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+
+  cout << "Hello World";
+
+  return 0;
+
+}
+            `
     );
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');

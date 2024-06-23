@@ -37,6 +37,8 @@ const Signup = () => {
       });
       if(response.ok){
         alert("User Sucessfully Registered");
+        const res_data= await response.json();
+        console.log(`res from register server`,res_data);
         setUser({ user_name: "",
           email: "",
           mobile_no: "",

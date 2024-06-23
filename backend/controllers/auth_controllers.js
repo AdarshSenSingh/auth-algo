@@ -15,6 +15,7 @@ const User = require('../models/userSchema');
 }
 
 // register part
+
 const register =async(req,res)=>{
   try {
     console.log(req.body);
@@ -69,7 +70,7 @@ const login = async (req, res) => {
 
         res.status(200).json({
           msg: "Login Successfully",
-          token,
+          token : token,
           userID: userExists._id.toString()
         });
       } else {
