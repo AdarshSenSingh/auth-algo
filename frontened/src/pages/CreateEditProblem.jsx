@@ -1,48 +1,36 @@
-import ProblemForm from '../components/ProblemForm';
-import { createProblem, getProblem, updateProblem } from '../../service/problemService';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import  { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { getProblems } from '../../service/problemService'; 
 
-
-const CreateEditProblem = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [initialData, setInitialData] = useState(null);
+const Home = () => {
+  const [problems, setProblems] = useState([]);
 
   useEffect(() => {
-    if (id) {
-      const fetchProblem = async () => {
-        try {
-          const { data } = await getProblem(id);
-          setInitialData(data);
-        } catch (error) {
-          console.error('Error fetching problem', error);
-        }
-      };
-
-      fetchProblem();
-    }
-  }, [id]);
-
-  const handleSubmit = async (problem) => {
-    try {
-      if (id) {
-        await updateProblem(id, problem);
-      } else {
-        await createProblem(problem);
+    const fetchProblems = async () => {
+      try {
+        const { data } = await getProblems();
+        setProblems(data);
+      } catch (error) {
+        console.error('Error fetching problems', error);
       }
-      navigate('/');
-    } catch (error) {
-      console.error('Error saving problem', error);
-    }
-  };
+    };
+
+    fetchProblems();
+  }, []);
 
   return (
     <div>
-      <h1>{id ? 'Edit Problem' : 'Create Problem'}</h1>
-      <ProblemForm onSubmit={handleSubmit} initialData={initialData} />
+      <h1>Problems</h1>
+      <Link to="/problems/new">Create New Problem</Link>
+      <ul>
+        {problems.map((problem) => (
+          <li key={problem.id}>
+            <Link to={`/problems/edit/${problem.id}`}>{problem.title}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default CreateEditProblem;
+export default Home;

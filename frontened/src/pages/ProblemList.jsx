@@ -33,7 +33,7 @@ const ProblemList = () => {
     <div>
      
       <h1>Problem List</h1>
-      <button onClick={() => navigate('/create')}>Create Problem</button>
+      <button onClick={() => navigate('/problems/edit/:id')}>Create Problem</button>
       <ul>
         {problems.map((problem) => (
           <li key={problem._id}>

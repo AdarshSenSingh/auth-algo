@@ -6,15 +6,17 @@ const { executeCpp } = require('./executeCpp');
 const cors = require('cors');
 
 //middlewares
-// app.use(cors());
+
+const corsOption= {
+    origin:"http://localhost:5173",
+    methods:"POST, GET , PUT, DELETE",
+    credentials:"true",
+}
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.json({ online: 'compiler' });
-});
-
-app.post("/run", async (req, res) => {
+app.post("/compiler", async (req, res) => {
 
 
     const { language = 'cpp', code ,input} = req.body;
@@ -23,9 +25,9 @@ app.post("/run", async (req, res) => {
     }
     try {
         const filePath = await generateFile(language, code);
-        console.log(`File created at: ${filePath}`); 
+        // console.log(`File created at: ${filePath}`); 
         const inputPath =  await generateInputFile(input);
-        console.log(`File input generate here ${inputPath}`);
+        // console.log(`File input generate here ${inputPath}`);
 
         const output = await executeCpp(filePath,inputPath);
         console.log(`Output is created ${output}`);
@@ -33,10 +35,10 @@ app.post("/run", async (req, res) => {
         
     } catch (error) {
         console.log(error);
-        res.status(500).json({"Inside index.js": error });
+        res.status(500).json({"Error inside compiler index.js": error });
     }
 });
-
-app.listen(8000, () => {
-    console.log("Server is listening on port 8000!");
+const PORT= (process.env.PORT|| 7000);
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}!`);
 });

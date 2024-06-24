@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
 import './Compiler.css';
 
 function Compiler() {
@@ -14,13 +13,14 @@ int main() {
   return 0;
 
 }
-            `
+        `
     );
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
     const inputRef = useRef(null);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const payload = {
             language: 'cpp',
             code,
@@ -28,11 +28,23 @@ int main() {
         };
 
         try {
-            const { data } = await axios.post(import.meta.env.VITE_BACKEND_URL, payload);
-            console.log(data);
-            setOutput(data.output);
+            const response = await fetch('http://localhost:7000/compiler', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+            const res_data = await response.json();
+            if (response.ok) {
+                setOutput(res_data.output); // Assuming the response contains an "output" field
+                setInput(''); // Clear input if needed
+            } else {
+                setOutput('');
+                console.error('Error running code');
+            }
         } catch (error) {
-            console.log(error.response);
+            console.log({ "error running the code": error });
         }
     };
 
@@ -48,7 +60,7 @@ int main() {
 
     useEffect(() => {
         autoResizeTextarea(inputRef.current);
-    }, []);
+    }, [input]);
 
     return (
         <div className="compiler-page">
@@ -75,6 +87,7 @@ int main() {
                         rows="10"
                         value={output}
                         readOnly
+                        placeholder='Output will display here'
                     />
                 </div>
             </div>

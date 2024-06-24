@@ -48,7 +48,7 @@ const Login = () => {
         });
 
         // Redirect to another page
-        navigate("/create");
+        navigate("/problems");
       } else {
         const errorData = await response.json();
         console.error("Error:", errorData.msg); // Display or log error message from server
