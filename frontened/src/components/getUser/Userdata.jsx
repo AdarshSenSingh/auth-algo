@@ -51,15 +51,7 @@ const Userdata = () => {
               <td>{index + 1}</td>
               <td>{problem.title}</td>
               <td>{problem.difficulty}</td>
-              <td>
-                {/* <ul>
-                  {problem.testCases.map((testCase, idx) => (
-                    <li key={idx}>
-                      <strong>Input:</strong> {testCase.input} - <strong>Output:</strong> {testCase.output}
-                    </li>
-                  ))}
-                </ul> */}
-              </td>
+              
               <td className='actionButtons'>
                 <button onClick={() => deleteProblem(problem._id)}><i className='fa-solid fa-trash'></i>Delete</button>
                 <Link to={`/edit/${problem._id}`}><i className='fa-solid fa-pen-to-square'></i>Edit</Link>

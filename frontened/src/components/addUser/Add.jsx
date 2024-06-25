@@ -41,7 +41,7 @@ const Add = () => {
     try {
       const response = await axios.post('http://localhost:2000/crud/create', problem);
       toast.success(response.data.msg, { position: 'top-right' });
-      navigate('/');
+      navigate('/problems');
     } catch (error) {
       console.log(error);
     }

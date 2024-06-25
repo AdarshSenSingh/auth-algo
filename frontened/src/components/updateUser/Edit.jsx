@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import './Edit.css';
 
 const Edit = () => {
   const initialProblemState = {
@@ -52,7 +51,7 @@ const Edit = () => {
     try {
       const response = await axios.put(`http://localhost:2000/crud/update/${id}`, problem);
       toast.success(response.data.msg, { position: 'top-right' });
-      navigate('/');
+      navigate('/problems');
     } catch (error) {
       console.log(error);
     }
