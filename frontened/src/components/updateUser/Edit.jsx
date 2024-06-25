@@ -50,7 +50,7 @@ const Edit = () => {
     e.preventDefault();
     try {
       const response = await axios.put(`http://localhost:2000/crud/update/${id}`, problem);
-      toast.success(response.data.msg, { position: 'top-right' });
+      toast.success("Problem Edited Sucessfully",response.data.msg, { position: 'top-right' });
       navigate('/problems');
     } catch (error) {
       console.log(error);

@@ -1,7 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import './Compiler.css';
 
 function Compiler() {
+    const { id } = useParams(); // Get the problem ID from the URL
     const [code, setCode] = useState(
         `#include <bits/stdc++.h>
 using namespace std;
@@ -17,7 +20,22 @@ int main() {
     );
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
+    const [problem, setProblem] = useState(null);
     const inputRef = useRef(null);
+
+    // Fetch problem data when the component mounts or when the id changes
+    useEffect(() => {
+        const fetchProblem = async () => {
+            try {
+                const response = await axios.get(`http://localhost:2000/crud/get/${id}`);
+                setProblem(response.data);
+            } catch (error) {
+                console.error('Error fetching problem:', error);
+            }
+        };
+
+        fetchProblem();
+    }, [id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +46,7 @@ int main() {
         };
 
         try {
-            const response = await fetch('http://localhost:7000/compiler', {
+            const response = await fetch(`http://localhost:7000/compiler/${id}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -64,6 +82,16 @@ int main() {
 
     return (
         <div className="compiler-page">
+            <div className="problem-container">
+                {problem ? (
+                    <>
+                        <h1>{problem.title}</h1>
+                        <p>{problem.description}</p>
+                    </>
+                ) : (
+                    <p>Loading problem...</p>
+                )}
+            </div>
             <div className="compiler-container">
                 <div className="editor">
                     <h1 className="text-3xl font-extrabold mb-3 text-black">AlgoU Online Code Compiler</h1>

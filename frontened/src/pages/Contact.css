@@ -1,0 +1,67 @@
+/* Ensure the page covers the full viewport */
+.contact-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: #f0f2f5; Light background color for the entire page */
+    margin: 0;
+  }
+  
+  /* Card styling */
+  .contact-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  /* Main heading */
+  .contact-card h2 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  /* Section heading */
+  .contact-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  /* Contact links */
+  .contact-link {
+    font-size: 1.3em;
+    color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .contact-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 480px) {
+    .contact-card {
+      padding: 20px;
+    }
+  
+    .contact-card h2 {
+      font-size: 1.8em;
+    }
+  
+    .contact-item h3 {
+      font-size: 1.3em;
+    }
+  
+    .contact-link {
+      font-size: 1.1em;
+    }
+  }
+  

@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import './Userdata.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Userdata = () => {
   const [problems, setProblems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +31,10 @@ const Userdata = () => {
     }
   };
 
+  const handleSolveClick = (problemId) => {
+    navigate(`/compiler/${problemId}`); // Change '/compiler/:id' to the actual path of your compiler page
+  };
+
   return (
     <div className='userTable'>
       <div className='buttonContainer'>
@@ -43,6 +48,7 @@ const Userdata = () => {
             <th>Title</th>
             <th>Difficulty</th>
             <th>Actions</th>
+            <th>Solve</th>
           </tr>
         </thead>
         <tbody>
@@ -51,11 +57,11 @@ const Userdata = () => {
               <td>{index + 1}</td>
               <td>{problem.title}</td>
               <td>{problem.difficulty}</td>
-              
               <td className='actionButtons'>
                 <button onClick={() => deleteProblem(problem._id)}><i className='fa-solid fa-trash'></i>Delete</button>
                 <Link to={`/edit/${problem._id}`}><i className='fa-solid fa-pen-to-square'></i>Edit</Link>
               </td>
+              <td><button onClick={() => handleSolveClick(problem._id)}>Solve</button></td>
             </tr>
           ))}
         </tbody>

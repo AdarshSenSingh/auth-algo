@@ -1,14 +1,21 @@
 
+import './Contact.css';
 
 const Contact = () => {
   return (
-    <>
-      <h2>Contact us with the given Phone no.</h2>
-      <a href="tel:9140662764">9140662764</a>
-       <br />
-      <h2>Or Mail us at</h2>
-      <a href="mailto:adarshsensingh@gmail.com">adarshsensingh@gmail.com</a>
-    </>
+    <div className="contact-page">
+      <div className="contact-card">
+        <h2>Contact Us</h2>
+        <div className="contact-item">
+          <h3>Phone</h3>
+          <a href="tel:9140662764" className="contact-link">9140662764</a>
+        </div>
+        <div className="contact-item">
+          <h3>Email</h3>
+          <a href="mailto:adarshsensingh@gmail.com" className="contact-link">adarshsensingh@gmail.com</a>
+        </div>
+      </div>
+    </div>
   );
 }
 
