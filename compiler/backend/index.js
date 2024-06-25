@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.post("/compiler", async (req, res) => {
+app.post("/compiler/:id", async (req, res) => {
 
 
     const { language = 'cpp', code ,input} = req.body;

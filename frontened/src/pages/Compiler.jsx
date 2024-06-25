@@ -27,7 +27,7 @@ int main() {
     useEffect(() => {
         const fetchProblem = async () => {
             try {
-                const response = await axios.get(`http://localhost:2000/crud/get/${id}`);
+                const response = await axios.get(`http://localhost:2000/crud/getOne/${id}`);
                 setProblem(response.data);
             } catch (error) {
                 console.error('Error fetching problem:', error);
@@ -45,6 +45,8 @@ int main() {
             input
         };
 
+        console.log('Submitting payload:', payload);
+
         try {
             const response = await fetch(`http://localhost:7000/compiler/${id}`, {
                 method: "POST",
@@ -53,13 +55,25 @@ int main() {
                 },
                 body: JSON.stringify(payload),
             });
-            const res_data = await response.json();
-            if (response.ok) {
-                setOutput(res_data.output); // Assuming the response contains an "output" field
-                setInput(''); // Clear input if needed
+
+            console.log('Response status:', response.status);
+
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                const res_data = await response.json();
+                console.log('Response data:', res_data);
+
+                if (response.ok) {
+                    setOutput(res_data.output); // Assuming the response contains an "output" field
+                    setInput(''); // Clear input if needed
+                } else {
+                    setOutput('');
+                    console.error('Error running code:', res_data);
+                }
             } else {
+                const text = await response.text();
+                console.error('Expected JSON, received text:', text);
                 setOutput('');
-                console.error('Error running code');
             }
         } catch (error) {
             console.log({ "error running the code": error });

@@ -30,7 +30,7 @@ function App() {
       <Route path="/add" element={<Add />}/>
       <Route path="/edit/:id" element={<Edit />}/>
       <Route path='/compiler/:id'element={<Compiler />}/>
-      <Route path="/compiler" element={<Compiler />}></Route>
+      <Route path="/compiler" element={<Compiler />}/>
       <Route path="/logout" element={<Logout />}/>
     </Routes>
     </BrowserRouter>
