@@ -1,8 +1,8 @@
 import { useState } from "react";
 import './Login.css';
-import img from "../assets/register.png"
-import { useNavigate,NavLink } from "react-router-dom";
-import {useAuth} from "../token/auth.jsx"
+import img from "../assets/register.png";
+import { useNavigate, NavLink } from "react-router-dom";
+import { useAuth } from "../token/auth.jsx";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -11,7 +11,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const storeTokeninLS= useAuth();
+  const { storeTokenInLS } = useAuth();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -35,29 +35,24 @@ const Login = () => {
       });
 
       if (response.ok) {
-        alert("You are sucessfully login!")
+        alert("You are successfully logged in!");
         const data = await response.json();
-        storeTokeninLS(data.token);
-
-        // Assuming the response contains a token or a success message
-        console.log(data.msg); // You can display this message to the user if needed
+        storeTokenInLS(data.token);
 
         setUser({
           email: "",
           password: "",
         });
 
-        // Redirect to another page
         navigate("/problems");
       } else {
         const errorData = await response.json();
-        console.error("Error:", errorData.msg); // Display or log error message from server
+        console.error("Error:", errorData.msg);
       }
     } catch (error) {
       console.error("Error while login:", error);
     }
   };
-
 
   return (
     <>
@@ -67,20 +62,19 @@ const Login = () => {
             <div className="container grid grid-two-cols">
               <div className="registration-image reg-img">
                 <img
-                  src= {img}
+                  src={img}
                   alt="a nurse with a cute look"
                   width="400"
                   height="400"
                 />
               </div>
-              {/* our main registration code  */}
+              {/* our main registration code */}
               <div className="registration-form">
                 <h1 className="main-heading mb-3">Login form</h1>
                 <br />
                 <form onSubmit={handleSubmit}>
-                 
                   <div>
-                    <label htmlFor="email">email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                       type="text"
                       name="email"
@@ -89,9 +83,8 @@ const Login = () => {
                       placeholder="email"
                     />
                   </div>
-                  
                   <div>
-                    <label htmlFor="password">password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                       type="password"
                       name="password"
@@ -107,7 +100,7 @@ const Login = () => {
                 </form>
                 <div className="tosignup">
                   <p>Do not have an account</p>
-                  <NavLink to="/register">register here</NavLink>
+                  <NavLink to="/register">Register here</NavLink>
                 </div>
               </div>
             </div>
@@ -117,4 +110,5 @@ const Login = () => {
     </>
   );
 };
+
 export default Login;

@@ -1,19 +1,29 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext } from "react";
+/* eslint-disable react/prop-types */
+import { createContext, useContext, useState } from "react";
 
 // Create the AuthContext
 export const AuthContext = createContext();
 
 // AuthProvider component
-// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
-    // Function to store token in local storage
+    const [token, setToken] = useState(localStorage.getItem('token'));
+
+    // Function to store token in local storage and update state
     const storeTokenInLS = (serverToken) => {
         localStorage.setItem('token', serverToken);
+        setToken(serverToken); // Update the state with the new token
+    };
+    
+    let isLogin = !!token;
+
+    const LogoutUser = () => {
+        setToken("");
+        localStorage.removeItem('token');
     };
 
     return (
-        <AuthContext.Provider value={storeTokenInLS}>
+        <AuthContext.Provider value={{ isLogin, storeTokenInLS, LogoutUser }}>
             {children}
         </AuthContext.Provider>
     );

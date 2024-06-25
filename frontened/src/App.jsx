@@ -29,7 +29,7 @@ function App() {
       <Route path="/problems/new" element={<CreateEditProblem />} />
       <Route path="/problems/edit/:id" element={<CreateEditProblem />} />
       <Route path='/compiler'element={<Compiler />}/>
-      <Route path="/logout" element={<Logout />}></Route>
+      <Route path="/logout" element={<Logout />}/>
     </Routes>
     </BrowserRouter>
     </>
