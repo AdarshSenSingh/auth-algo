@@ -7,9 +7,10 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import './App.css'
 import About from './pages/About';
 import Contact from './pages/Contact';
-import CreateEditProblem from "./pages/CreateEditProblem";
-import ProblemList from "./pages/ProblemList";
 import Logout from "./pages/Logout";
+import Userdata from "./components/getUser/Userdata";
+import Add from "./components/addUser/Add";
+import Edit from "./components/updateUser/Edit";
 
 function App() {
  
@@ -25,9 +26,9 @@ function App() {
       <Route path='/login'element={<Login />}/>
       <Route path='/about' element={<About />}/>
       <Route path='/contact' element={<Contact/>}/>
-      <Route path="/problems" element={<ProblemList />} />
-      <Route path="/problems/new" element={<CreateEditProblem />} />
-      <Route path="/problems/edit/:id" element={<CreateEditProblem />} />
+      <Route path="/problems" element={<Userdata />} />
+      <Route path="/add" element={<Add />}/>
+      <Route path="/edit/:id" element={<Edit />}/>
       <Route path='/compiler'element={<Compiler />}/>
       <Route path="/logout" element={<Logout />}/>
     </Routes>

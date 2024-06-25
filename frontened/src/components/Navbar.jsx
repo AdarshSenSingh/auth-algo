@@ -25,7 +25,6 @@ const Navbar = () => {
                             {isLogin ? <> 
                                 
                                 <li><NavLink to="/problems">Problems</NavLink></li>
-                    <li><NavLink to="/edit/:id">Edit</NavLink></li>
                     <li><NavLink to="/compiler">Compiler</NavLink></li>
                     <li><NavLink to="/logout">Logout</NavLink></li> </> :
                                 <>
