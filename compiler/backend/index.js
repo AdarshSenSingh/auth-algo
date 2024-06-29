@@ -15,6 +15,9 @@ const corsOption= {
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.get("/ram", (req, res) => {
+    res.send("Hello, World!");
+  });
 
 app.post("/compiler/:id", async (req, res) => {
 

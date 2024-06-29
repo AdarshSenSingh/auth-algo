@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Editor from 'react-simple-code-editor';
 import axios from 'axios';
 import './Compiler.css';
 
@@ -109,6 +110,10 @@ int main() {
             <div className="compiler-container">
                 <div className="editor">
                     <h1 className="text-3xl font-extrabold mb-3 text-black">AlgoU Online Code Compiler</h1>
+                    <select className="select-box border border-gray-300 rounded-lg py-1.5 px-4 mb-1 focus:outline-none focus:border-indigo-500">
+        <option value='cpp'>C++</option>
+      </select>
+               
                     <textarea
                         rows="15"
                         value={code}

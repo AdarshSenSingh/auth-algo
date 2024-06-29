@@ -11,6 +11,7 @@ import Logout from "./pages/Logout";
 import Userdata from "./components/getUser/Userdata";
 import Add from "./components/addUser/Add";
 import Edit from "./components/updateUser/Edit";
+import Services from "./pages/Services"
 
 function App() {
  
@@ -25,6 +26,7 @@ function App() {
       <Route path='/register'element={<Signup />}/>
       <Route path='/login'element={<Login />}/>
       <Route path='/about' element={<About />}/>
+      <Route path="/services" element={<Services />}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path="/problems" element={<Userdata />} />
       <Route path="/add" element={<Add />}/>

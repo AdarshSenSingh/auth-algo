@@ -16,14 +16,14 @@ const executeCpp = (filePath,inputPath) => {
 
   const jobId = path.basename(filePath).split(".")[0];
   console.log({"Job id ":jobId});
-  const outputFilename=`${jobId}.exe`;
+  const outputFilename=`${jobId}.out`;
   const outPath = path.join(outputPath, outputFilename);
  
   console.log("Output File Name: ", outputFilename); 
 
   return new Promise((resolve, reject) => {
     exec(
-        `g++ "${filePath}" -o "${outPath}" && cd "${outputPath}" && .\\${outputFilename} < "${inputPath}"`,
+        `g++ "${filePath}" -o "${outPath}" && cd "${outputPath}" && ./${outputFilename} < "${inputPath}"`,
       (error, stdout, stderr) => {
         if (error) {
           reject({ error, stderr });
