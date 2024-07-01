@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Editor from 'react-simple-code-editor';
 import axios from 'axios';
 import './Compiler.css';
 
