@@ -1,61 +1,73 @@
-.userTable{
-    width: 60%;
-    background-color:blueviolet;
-    box-shadow: 1px 1px 8px rgba(140, 10, 167, 0.065);
-    border-radius: 5px;
+
+
+.userTable {
+    color: black;
+    width: 80%;
     margin: 50px auto;
-    padding: 50px;
-}
-
-.buttonContainer {
+  }
+  
+  .buttonContainer {
     display: flex;
-    justify-content: space-between; /* Adjust space between the buttons */
-    gap: 10px; /* Adjust spacing between buttons */
-}
-
-.addButton{
-   text-decoration: none;
-   background-color: yellowgreen;
-   color: black;
-   font-weight: 500;
-   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.065);
-   border-radius: 5px;
-   padding: 10px;
-}
-
-.userTable table{
-    width: 100%;
-    margin-top: 30px;
-    border-collapse: collapse;
-
-}
-
-.userTable table thead th{
-    background-color: rgba(101, 101, 232, 0.913);
-    color: black;
-    padding: 10px;
-}
-
-.userTable table tbody td{
-    padding: 10px;
-    text-align: center;
-}
-
-.actionButtons button{
-    border: 0;
-    outline: none;
-    background: red;
-    padding: 8px 10px;
-    color: black;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .addButton {
+    text-decoration: none;
+    background-color: rgb(162, 240, 5);
+    color: white;
+    font-weight: 500;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.065);
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 10px;
+  }
+  
+  .cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: goldenrod;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardContent {
+    margin-bottom: 10px;
+  }
+  
+  .cardActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .cardActions button {
+    padding: 8px 16px;
+    background-color: #ff6347;
+    color:white;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.actionButtons a{
-    background: green;
-    padding: 6px 10px;
-    color: white;
-    border-radius: 5px;
-    margin: 0 10px;
+  }
+  .heading{
+    font-size: 3rem;
+  }
+  
+  .cardActions a {
     text-decoration: none;
-}
+    padding: 8px 16px;
+    background-color: #4682b4;
+    color:white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cardActions button:hover, .cardActions a:hover {
+    opacity: 0.8;
+  }
+  

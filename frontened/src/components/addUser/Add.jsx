@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Add.css';
 import toast from 'react-hot-toast';
@@ -46,10 +46,14 @@ const Add = () => {
       console.log(error);
     }
   };
-
+   const handleBack=()=>{
+       navigate("/problems");
+   }
   return (
     <div className='addProblem'>
-      <Link to={'/problems'}>Back</Link>
+       <div >
+      <button className="backButton" onClick={handleBack}>Back</button>
+    </div>
       <h3>Add new problem</h3>
       <form className='addProblemForm' onSubmit={submitForm}>
         <div className='inputGroup'>

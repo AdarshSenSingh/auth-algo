@@ -1,5 +1,6 @@
+/* Edit.css */
 
-.addProblem {
+.editProblem {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -9,21 +10,20 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .addProblem h3 {
-    color:blue;
+  .editProblem h3 {
+    color: blue;
     font-size: 2rem;
     text-align: center;
     margin-bottom: 20px;
   }
   
-  .addProblemForm {
+  .editProblemForm {
     display: flex;
     flex-direction: column;
   }
   
   .inputGroup {
     margin-bottom: 15px;
-    color: blue;
   }
   
   .inputGroup label {
@@ -62,15 +62,16 @@
   
   .testCaseGroup button {
     padding: 8px 12px;
-    background-color: #007bff;
+    background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
   }
   
   .testCaseGroup button:hover {
-    background-color: #0056b3;
+    background-color: #c82333;
   }
   
   button[type='submit'] {

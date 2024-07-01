@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import "./Edit.css"
 
 const Edit = () => {
   const initialProblemState = {
@@ -56,10 +57,15 @@ const Edit = () => {
       console.log(error);
     }
   };
+  const handleBack = () => {
+    navigate('/problems');
+  };
 
   return (
     <div className='editProblem'>
-      <Link to={'/problems'}>Back</Link>
+        <div >
+      <button className="backButton" onClick={handleBack}>Back</button>
+    </div>
       <h3>Update Problem</h3>
       <form className='editProblemForm' onSubmit={submitForm}>
         <div className='inputGroup'>
