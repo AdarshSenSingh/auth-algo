@@ -5,10 +5,7 @@ import { useAuth } from '../token/auth';
 const Navbar = () => {
     const { isLogin } = useAuth();
 
-    // const handleLogout = () => {
-    //   localStorage.removeItem('token');
-    //   navigate('/login');
-    // };
+
     return (
         <>
             <header>

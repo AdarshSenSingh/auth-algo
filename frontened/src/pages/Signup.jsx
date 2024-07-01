@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate,NavLink } from "react-router-dom";
 import './Signup.css';
 import img from "../assets/register.png"
+import toast from "react-hot-toast";
 
 
 const Signup = () => {
@@ -23,7 +24,12 @@ const Signup = () => {
       [name]: value,
     });
   };
-
+   const errorfunction=()=>{
+    toast.error("Enter Valid details",{
+      position: "top-center",
+      className:"custom-font"
+    })
+   }
   // handle form on submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +42,7 @@ const Signup = () => {
         body: JSON.stringify(user),
       });
       if(response.ok){
-        alert("User Sucessfully Registered");
+        toast.success("User Register Sucessfully", { position: 'top-right' });
         const res_data= await response.json();
         console.log(`res from register server`,res_data);
         setUser({ user_name: "",
@@ -45,6 +51,9 @@ const Signup = () => {
           password: "",});
           navigate("/login");
 
+      }
+      else{
+        errorfunction();
       }
   
       console.log(response);

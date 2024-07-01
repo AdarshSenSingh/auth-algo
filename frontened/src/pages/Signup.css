@@ -36,6 +36,9 @@
     flex-direction: column;
     justify-content: center;
   }
+  .custom-font{
+    font-size: 15px;
+  }
   
   .main-heading {
     font-size: 5rem;

@@ -12,6 +12,7 @@ import Userdata from "./components/getUser/Userdata";
 import Add from "./components/addUser/Add";
 import Edit from "./components/updateUser/Edit";
 import Services from "./pages/Services"
+import Result from "./pages/Result"
 
 function App() {
  
@@ -34,6 +35,7 @@ function App() {
       <Route path='/compiler/:id'element={<Compiler />}/>
       <Route path="/compiler" element={<Compiler />}/>
       <Route path="/logout" element={<Logout />}/>
+      <Route path="/result" element={<Result />}/>
     </Routes>
     </BrowserRouter>
     </>

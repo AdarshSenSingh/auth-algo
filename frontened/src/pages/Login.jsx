@@ -3,6 +3,7 @@ import './Login.css';
 import img from "../assets/register.png";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useAuth } from "../token/auth.jsx";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -21,6 +22,12 @@ const Login = () => {
       [name]: value,
     });
   };
+  const showErrorPopup = () => {
+    toast.error("Enter correct details", {
+      position: "top-center",
+      className: "custom-toast",
+    });
+  };
 
   // handle form on submit
   const handleSubmit = async (e) => {
@@ -35,7 +42,7 @@ const Login = () => {
       });
 
       if (response.ok) {
-        alert("You are successfully logged in!");
+        toast.success("Login Sucessfully", { position: 'top-right' });
         const data = await response.json();
         storeTokenInLS(data.token);
 
@@ -46,6 +53,7 @@ const Login = () => {
 
         navigate("/problems");
       } else {
+        showErrorPopup();
         const errorData = await response.json();
         console.error("Error:", errorData.msg);
       }
