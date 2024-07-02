@@ -11,6 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
 const URL= process.env.MONGOURL;
 const PORT= process.env.PORT||6000;
+app.get("/ram", (req, res) => {
+    res.send("Hello, World!");
+  });
 mongoose.connect(URL).then(()=>{
     console.log("Database connection sucessful");
     app.listen(PORT, ()=>{
