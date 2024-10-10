@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate,NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import './Signup.css';
-import img from "../assets/register.png"
+import img from "../assets/register.png";
 import toast from "react-hot-toast";
-
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -12,56 +11,59 @@ const Signup = () => {
     mobile_no: "",
     password: "",
   });
-  const navigate= useNavigate();
+
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
-    console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
-    setUser({
-      ...user,
-      [name]: value,
+    if (name === "mobile_no") {
+      // Only allow numbers and ensure the length is not more than 10
+      if (/^\d*$/.test(value) && value.length <= 10) {
+        setUser({ ...user, [name]: value });
+      }
+    } else {
+      setUser({ ...user, [name]: value });
+    }
+  };
+
+  const errorfunction = () => {
+    toast.error("Enter Valid details", {
+      position: "top-center",
+      className: "custom-font",
     });
   };
-   const errorfunction=()=>{
-    toast.error("Enter Valid details",{
-      position: "top-center",
-      className:"custom-font"
-    })
-   }
+
   // handle form on submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response= await fetch('http://localhost:5000/auth/register',{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json",
+      const response = await fetch('http://localhost:5000/auth/register', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
       });
-      if(response.ok){
-        toast.success("User Register Sucessfully", { position: 'top-right' });
-        const res_data= await response.json();
-        console.log(`res from register server`,res_data);
-        setUser({ user_name: "",
+      if (response.ok) {
+        toast.success("User Register Successfully", { position: 'top-right' });
+        const res_data = await response.json();
+        console.log(`res from register server`, res_data);
+        setUser({
+          user_name: "",
           email: "",
           mobile_no: "",
-          password: "",});
-          navigate("/login");
-
-      }
-      else{
+          password: "",
+        });
+        navigate("/login");
+      } else {
         errorfunction();
       }
-  
-      console.log(response);
     } catch (error) {
-      console.log({"error inside the register portion":error})
+      console.log({ "error inside the register portion": error });
     }
   };
-
 
   return (
     <>
@@ -71,7 +73,7 @@ const Signup = () => {
             <div className="container grid grid-two-cols">
               <div className="registration-image reg-img">
                 <img
-                  src= {img}
+                  src={img}
                   alt="a nurse with a cute look"
                   width="400"
                   height="400"
@@ -83,43 +85,45 @@ const Signup = () => {
                 <br />
                 <form onSubmit={handleSubmit}>
                   <div>
-                    <label htmlFor="user_name">username</label>
+                    <label htmlFor="user_name">Username</label>
                     <input
                       type="text"
                       name="user_name"
                       value={user.user_name}
                       onChange={handleInput}
-                      placeholder="username"
+                      placeholder="Username"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email">email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                       type="text"
                       name="email"
                       value={user.email}
                       onChange={handleInput}
-                      placeholder="email"
+                      placeholder="Email"
                     />
                   </div>
                   <div>
-                    <label htmlFor="mobile_no">mobile_no</label>
+                    <label htmlFor="mobile_no">Mobile No</label>
                     <input
-                      type="number"
+                      type="text"
                       name="mobile_no"
                       value={user.mobile_no}
                       onChange={handleInput}
-                      placeholder="mobile"
+                      placeholder="Mobile"
+                      maxLength="10"
+                      className="no-spinner"
                     />
                   </div>
                   <div>
-                    <label htmlFor="password">password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                       type="password"
                       name="password"
                       value={user.password}
                       onChange={handleInput}
-                      placeholder="password"
+                      placeholder="Password"
                     />
                   </div>
                   <br />
@@ -128,9 +132,8 @@ const Signup = () => {
                   </button>
                 </form>
                 <div className="tologin">
-                   <p>Already Registered!</p>
-                   <NavLink to="/login">login here</NavLink>
-
+                  <p>Already Registered!</p>
+                  <NavLink to="/login">Login here</NavLink>
                 </div>
               </div>
             </div>
@@ -140,4 +143,5 @@ const Signup = () => {
     </>
   );
 };
+
 export default Signup;

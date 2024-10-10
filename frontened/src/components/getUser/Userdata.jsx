@@ -41,11 +41,11 @@ const Userdata = () => {
         <Link to={'/add'} className='addButton'>Add Problem</Link>
       </div>
       <div className='cardsContainer'>
-        {problems.map((problem) => (
+        {problems.map((problem, index) => (
           <div key={problem._id} className='card'>
             <div className='cardContent'>
               <h2 className='heading'>{problem.title}</h2>
-              <p>ID: {problem._id}</p>
+              <p>Problem No: {index + 1}</p>
               <p>Description: {problem.description}</p>
               <p>Difficulty: {problem.difficulty}</p>
             </div>

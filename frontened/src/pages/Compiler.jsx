@@ -90,13 +90,15 @@ int main() {
   };
 
   const handleFinal = async () => {
-    if (!problem || !Array.isArray(problem.testCases) || problem.testCases.length < 2) {
+    if (!problem  || problem.testCases.length < 2) {
       toast.error("Not enough test cases", { position: "top-center" });
       return;
     }
 
     try {
-      const expectedOutput = problem.testCases[1].output;
+
+      // fetch the data from the backend
+      // i.e verdict data;
 
       const response = await fetch(`http://localhost:7000/compiler/${id}`, {
         method: "POST",
@@ -109,7 +111,7 @@ int main() {
       const res_data = await response.json();
       const actualOutput = res_data.output;
 
-      if (actualOutput === expectedOutput) {
+      if (res_data==actualOutput) {
         toast.success("Code is correct", { position: "top-center" });
       } else {
         toast.error("Code is wrong", { position: "top-center" });
