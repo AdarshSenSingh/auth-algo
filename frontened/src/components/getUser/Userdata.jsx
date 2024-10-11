@@ -12,10 +12,12 @@ const Userdata = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${url_2}/getOne/`);
+        // Ensure you're hitting the correct endpoint
+        const response = await axios.get(`${url_2}/getAll`); // Changed from getOne to getAll
         setProblems(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
+        toast.error('Failed to fetch problems.'); // Provide user feedback on error
       }
     };
 
@@ -29,11 +31,12 @@ const Userdata = () => {
       toast.success(response.data.msg, { position: 'top-right' });
     } catch (error) {
       console.error('Error deleting problem:', error);
+      toast.error('Failed to delete problem.'); // Provide user feedback on error
     }
   };
 
   const handleSolveClick = (problemId) => {
-    navigate(`/compiler/${problemId}`); // Change '/compiler/:id' to the actual path of your compiler page
+    navigate(`/compiler/${problemId}`); // Ensure this path matches your routes
   };
 
   return (
