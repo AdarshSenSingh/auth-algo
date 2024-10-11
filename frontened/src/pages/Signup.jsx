@@ -39,8 +39,8 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url_1 = import.meta.env.VITE_BACKEND_1_URL + '/auth/register';
-      const response = await fetch(url_1, {
+      const url_1 = `${import.meta.env.VITE_BACKEND_1_URL}/auth`;
+      const response = await fetch(`${url_1}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
