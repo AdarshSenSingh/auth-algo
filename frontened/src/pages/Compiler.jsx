@@ -23,12 +23,12 @@ int main() {
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const url_2=`${import.meta.env.VITE_BACKEND_2_URL}/crud`;
-  const url_3= `${import.meta.env.VITE_BACKEND_3_URL}/compiler`;
+  const url_3=`${import.meta.env.VITE_BACKEND_3_URL}/compiler/${id}`;
 
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get(`${url_2}/${id}`);
+        const response = await axios.get(`${url_2}/getOne/${id}`);
         setProblem(response.data);
       } catch (error) {
         console.error('Error fetching problem:', error);
@@ -50,7 +50,7 @@ int main() {
     
 
     try {
-      const response = await fetch(`${url_3}/${id}`, {
+      const response = await fetch((url_3), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +103,7 @@ int main() {
       // fetch the data from the backend
       // i.e verdict data;
 
-      const response = await fetch(`${url_3}/${id}`, {
+      const response = await fetch((url_3), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
