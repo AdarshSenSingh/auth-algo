@@ -22,11 +22,13 @@ int main() {
   const [problem, setProblem] = useState(null);
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const url_2=`${import.meta.env.VITE_BACKEND_2_URL}/crud`;
+  const url_3= `${import.meta.env.VITE_BACKEND_3_URL}/compiler`;
 
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get(`http://localhost:2000/crud/getOne/${id}`);
+        const response = await axios.get(`${url_2}/${id}`);
         setProblem(response.data);
       } catch (error) {
         console.error('Error fetching problem:', error);
@@ -45,9 +47,10 @@ int main() {
     };
 
     console.log('Submitting payload:', payload);
+    
 
     try {
-      const response = await fetch(`http://localhost:7000/compiler/${id}`, {
+      const response = await fetch(`${url_3}/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +103,7 @@ int main() {
       // fetch the data from the backend
       // i.e verdict data;
 
-      const response = await fetch(`http://localhost:7000/compiler/${id}`, {
+      const response = await fetch(`${url_3}/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -35,11 +35,11 @@ const Add = () => {
     const testCases = problem.testCases.filter((_, idx) => idx !== index);
     setProblem({ ...problem, testCases });
   };
-
+  const url_2 = `${import.meta.env.VITE_BACKEND_2_URL}/crud`;
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:2000/crud/create', problem);
+      const response = await axios.post(`${url_2}/create`, problem);
       toast.success(response.data.msg, { position: 'top-right' });
       navigate('/problems');
     } catch (error) {

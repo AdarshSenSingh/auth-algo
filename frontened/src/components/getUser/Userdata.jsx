@@ -7,11 +7,12 @@ import { Link, useNavigate } from 'react-router-dom';
 const Userdata = () => {
   const [problems, setProblems] = useState([]);
   const navigate = useNavigate();
+  const url_2 = `${import.meta.env.VITE_BACKEND_2_URL}/crud`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:2000/crud/getAll');
+        const response = await axios.get(`${url_2}/getOne/`);
         setProblems(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -23,7 +24,7 @@ const Userdata = () => {
 
   const deleteProblem = async (problemId) => {
     try {
-      const response = await axios.delete(`http://localhost:2000/crud/delete/${problemId}`);
+      const response = await axios.delete(`${url_2}/delete/${problemId}`);
       setProblems((prevProblems) => prevProblems.filter((problem) => problem._id !== problemId));
       toast.success(response.data.msg, { position: 'top-right' });
     } catch (error) {

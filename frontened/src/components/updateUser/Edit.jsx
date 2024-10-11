@@ -37,35 +37,40 @@ const Edit = () => {
     setProblem({ ...problem, testCases });
   };
 
+  // Ensure the URL is correctly constructed using the environment variable
+  const url_2 = `${import.meta.env.VITE_BACKEND_2_URL}/crud`;
+
   useEffect(() => {
-    axios.get(`http://localhost:2000/crud/getOne/${id}`)
+    axios.get(`${url_2}/getOne/${id}`)
       .then((response) => {
         setProblem(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error("Error fetching problem:", error);
       });
   }, [id]);
 
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:2000/crud/update/${id}`, problem);
-      toast.success("Problem Edited Sucessfully",response.data.msg, { position: 'top-right' });
+      const response = await axios.put(`${url_2}/update/${id}`, problem);
+      toast.success("Problem Edited Successfully",response.data.msg);
       navigate('/problems');
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to update the problem!");
+      console.error("Error updating problem:", error);
     }
   };
+
   const handleBack = () => {
     navigate('/problems');
   };
 
   return (
     <div className='editProblem'>
-        <div >
-      <button className="backButton" onClick={handleBack}>Back</button>
-    </div>
+      <div>
+        <button className="backButton" onClick={handleBack}>Back</button>
+      </div>
       <h3>Update Problem</h3>
       <form className='editProblemForm' onSubmit={submitForm}>
         <div className='inputGroup'>
